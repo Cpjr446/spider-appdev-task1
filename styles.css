@@ -1,15 +1,19 @@
 body {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Raleway', serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 nav {
-    background-color: #e67e22;
+    background-color: #107d7e; /* Teal background */
     padding: 1em;
     text-align: center;
-    transition: background-color 3s ease-in;
+    transition: background-color 0.5s ease-in-out;
 }
 
 nav ul {
@@ -19,18 +23,22 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 2em;
-  
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.5s ease-in-out;
+}
+
+nav a:hover {
+    color: #d4f1f1; /* Lighter teal on hover */
 }
 
 .fullscreen {
     height: 100vh;
-    background-image:url(background_image.jpg);
+    background-image: url(background_image.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -41,37 +49,40 @@ nav a {
     color: white;
     text-align: center;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align:center;
-    
-}
-ol{
-    padding: 5px;;
-    margin: 5%;
-    text-align:center;
-}
+
 .cta-button {
-    background-color: #e67e22;
+    background-color: rgb(18, 156, 156);
     color: white;
     padding: 1em 2em;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 1em;
     font-weight: bold;
+    transition: background-color 0.5s ease-in-out;
 }
-#intro {
+
+.cta-button:hover {
+    background-color: teal;
+}
+
+#about h2 {
+    padding: 1em 1em;
+    text-align: center;
+}
+
+.intro {
+    padding: 2em 1em;
+    text-align: center;
+    margin: 10px;
+}
+
+.outro {
     background-color: #f7f7f7;
     padding: 2em 1em;
     text-align: center;
+    margin: 20px;
 }
-#outro {
-    background-color: #f7f7f7;
-    padding: 2em 1em;
-    text-align: center;
-}
+
 header {
     text-align: center;
     padding: 2em 1em;
@@ -87,7 +98,7 @@ header {
 }
 
 .cuisine {
-    background-color: #f1c40f;
+    background-color: #e0f7f7; /* Light teal background */
     padding: 1em;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -97,7 +108,7 @@ header {
 }
 
 .cuisine h3 {
-    color: #d35400;
+    color: #107d7e; /* Teal heading */
 }
 
 #recipe-finder {
@@ -129,31 +140,46 @@ header {
     margin-bottom: 1em;
 }
 
-.ingredient {
-    background-color: #e67e22;
-    color: #fff;
-    padding: 0.5em 1em;
-    border-radius: 8px;
-    display: flex;
+/* Custom checkbox styling */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #107d7e;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    background-color: white;
+}
+
+/* Adjust the label for better alignment */
+label {
+    display: inline-flex;
     align-items: center;
-    gap: 0.5em;
+    cursor: pointer;
+}
+
+label input[type="checkbox"] {
+    margin-right: 8px;
 }
 
 #find-recipes-btn {
     font-family: 'Raleway', serif;
-    background-color: #e67e22;
+    background-color: #107d7e; /* Teal button */
     color: #fff;
-    padding: 0.5em 1em;
+    padding: 1em 2em; /* Increased padding for larger button */
+    font-size: 1.2em; /* Increased font size */
     border: none;
     border-radius: 8px;
     font-weight: bold;
     align-self: center;
     cursor: pointer;
-    transition: background-color 3s ease-in;
+    transition: background-color 0.5s ease-in-out;
 }
 
 #find-recipes-btn:hover {
-    background-color: #d35400;
+    background-color: #0a5b5c; /* Darker teal on hover */
 }
 
 #recipes, #favorite-recipes {
@@ -164,23 +190,128 @@ header {
 }
 
 .recipe {
-    background-color: #f1c40f;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 300px;
+    width: 300px;
+    min-height: 450px; /* Adjusted height for better spacing */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row ;
+    background-color: #e0f7f7; /* Light teal background */
+    text-align: left; /* Left align content */
+    overflow: hidden; /* Hide overflowing content */
 }
 
 .recipe img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 100%; /* Make the image take the full width of the container */
+    height: 150px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensure the image covers the entire container */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.favorite-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: auto; /* Ensure button stays at the bottom */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #107d7e; /* Teal button */
+    color: white;
+    font-size: 16px;
+    align-self: flex-end;
+    transition: background-color 0.5s ease-in-out; /* Increased duration */
+}
+
+.favorite-btn:hover {
+    background-color: #0a5b5c; /* Darker teal on hover */
+}
+
+.recipe ol, .recipe ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.recipe h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #107d7e; /* Teal heading */
+}
+
+.recipe p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.recipe strong {
+    color:#107d7e ;
+}
+
+.recipe {
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.recipe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#recipes-list p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+}
+
+#recipes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 footer {
-    background-color: #e67e22;
+    background-color: #107d7e; /* Teal background */
     color: white;
     text-align: center;
     padding: 1em 0;
 }
+
+.save-favorite {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Raleway', serif;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.5s ease-in-out; 
+    margin-top: auto; /* Ensure button stays at the bottom */
+}
+
+.save-favorite:hover {
+    background-color: #45a049;
+}
+
+.delete-favorite {
+    background-color: #f44336; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Raleway', serif;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.5s ease-in-out; 
+    margin-top: auto; /* Ensure button stays at the bottom */
+}
+
+.delete-favorite:hover {
+    background-color: #d32f2f;
+}
+
