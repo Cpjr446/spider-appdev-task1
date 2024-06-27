@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#recipe-finder">Recipe Finder</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="fullscreen">
+        <h1>Welcome to Recipe Finder</h1>
+        <p>Discover delicious recipes from around the world!</p>
+        <a href="#recipe-finder" class="cta-button">Find Recipes</a>
+    </section>
+
+    <header>
+        <h1>Recipe Finder</h1>
+        <p>Find delicious recipes based on the ingredients you have.</p>
+    </header>
+
+    <section id="about">
+        <h2>About Recipe Finder</h2>
+        <p class="intro">Welcome to Recipe Finder, your culinary companion for exploring diverse cuisines and discovering exciting new dishes!.</p>
+        <div class="cuisine-container">
+            <div class="cuisine">
+                <h3>South Indian Cuisine</h3>
+                <p>Known for its use of rice, lentils, and a variety of spices, South Indian cuisine is flavorful and diverse. Popular dishes include dosa, idli, sambar, and coconut-based curries. The cuisine often features vegetarian options and is characterized by its use of tamarind, curry leaves, and mustard seeds.</p>
+            </div>
+            <div class="cuisine">
+                <h3>North Indian Cuisine</h3>
+                <p>North Indian cuisine is rich and diverse, known for its use of dairy, meats, and a wide range of spices. Staples include naan bread, tandoori dishes, and creamy curries like butter chicken. The cuisine is influenced by Mughlai cooking traditions and often features the use of the tandoor oven.</p>
+            </div>
+            <div class="cuisine">
+                <h3>Italian Cuisine</h3>
+                <p>Italian cuisine is famous for its regional diversity, especially between the north and the south of the Italian Peninsula. It emphasizes fresh, high-quality ingredients and simple preparation. Pasta, pizza, risotto, and a variety of cheeses and wines are central to Italian culinary traditions. Each region boasts its own specialties and cooking techniques.</p>
+            </div>
+            <div class="cuisine">
+                <h3>Mexican Cuisine</h3>
+                <p>Mexican cuisine is known for its bold flavors and use of fresh ingredients, such as tomatoes, chili peppers, and corn. It offers a rich variety of dishes including tacos, enchiladas, mole, and guacamole. The cuisine has deep pre-Hispanic roots and has been influenced by Spanish colonization, resulting in a unique blend of flavors and techniques.</p>
+            </div>
+            <div class="cuisine">
+                <h3>American Cuisine</h3>
+                <p>American cuisine is diverse and eclectic, reflecting the country's history and multicultural population. It ranges from traditional dishes like hamburgers and apple pie to regional specialties such as Southern barbecue, New England clam chowder, and Tex-Mex. American cuisine often emphasizes comfort food and hearty portions.</p>
+            </div>
+        </div>
+        <p class="outro" style="margin: 20px 0;">Explore these cuisines and more with our Recipe Finder. Whether you're a seasoned chef or a curious beginner, we're here to help you discover delicious meals from around the world!</p>
+    </section>
+
+    <section id="recipe-finder">
+        <h2>Recipe Finder</h2>
+        <div class="finder-container">
+            <form id="ingredient-form">
+                <div id="ingredients-list"></div>
+                <div class="filters">
+                    <select id="cuisine-filter">
+                        <option value="">Select Cuisine</option>
+                        <option value="South Indian">South Indian</option>
+                        <option value="North Indian">North Indian</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="American">American</option>
+                    </select>
+                    <select id="time-filter">
+                        <option value="">Preparation Time</option>
+                        <option value="under 30 mins">Under 30 mins</option>
+                        <option value="30 mins to 1 hr">30 mins to 1 hr</option>
+                        <option value="1 hr to 2 hrs">1 hr to 2 hrs</option>
+                        <option value="More than 2 hrs">More than 2 hrs</option>
+                    </select>
+                    <select id="dietary-filter">
+                        <option value="">Dietary Restrictions</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Gluten-Free">Gluten-Free</option>
+                        <option value="Non-Vegetarian">Non-Vegetarian</option>
+                    </select>
+                </div>
+                <button id="find-recipes-btn" type="submit">Find Recipes</button>
+            </form>
+            <div id="recipes"></div>
+            <h2>Favorite Recipes</h2>
+            <div id="favorite-recipes"></div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Recipe Finder.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
