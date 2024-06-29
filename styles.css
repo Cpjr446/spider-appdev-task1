@@ -65,24 +65,9 @@ nav a:hover {
     background-color: teal;
 }
 
-#about h2 {
-    padding: 1em 1em;
-    text-align: center;
-}
-
-.intro {
-    padding: 2em 1em;
-    text-align: center;
-    margin: 10px;
-}
-
-.outro {
-    background-color: #f7f7f7;
-    padding: 2em 1em;
-    text-align: center;
-    margin: 20px;
-}
-
+.about h2,
+.intro,
+.outro,
 header {
     text-align: center;
     padding: 2em 1em;
@@ -109,6 +94,33 @@ header {
 
 .cuisine h3 {
     color: #107d7e; /* Teal heading */
+}
+
+.ingredient input[type="checkbox"] {
+    margin-right: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #107d7e;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.ingredient input[type="checkbox"]:checked {
+    background-color: #107d7e;
+    position: relative;
+}
+
+.ingredient input[type="checkbox"]:checked::before {
+    content: '\2713';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #recipe-finder {
@@ -140,119 +152,82 @@ header {
     margin-bottom: 1em;
 }
 
-/* Custom checkbox styling */
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #107d7e;
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    vertical-align: middle;
-    background-color: white;
-}
-
-/* Adjust the label for better alignment */
-label {
+.ingredient {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
 }
 
-label input[type="checkbox"] {
-    margin-right: 8px;
+.ingredient:hover {
+    background-color: #e0e0e0;
 }
 
 #find-recipes-btn {
     font-family: 'Raleway', serif;
     background-color: #107d7e; /* Teal button */
     color: #fff;
-    padding: 1em 2em; 
-    font-size: 1.2em; 
+    padding: 0.5em 1em;
+    font-size: 0.9em;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-weight: bold;
-    align-self: center;
     cursor: pointer;
     transition: background-color 0.5s ease-in-out;
+    display: block;
+    margin: 1em auto;
 }
 
 #find-recipes-btn:hover {
     background-color: #0a5b5c; /* Darker teal on hover */
 }
 
-#recipes, #favorite-recipes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2em;
+#recipes,
+#favorite-recipes,
+#recipe-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3em; /* Increased from 2em to 3em */
     justify-content: center;
+    padding: 2em;
 }
 
 .recipe {
-    width: 300px;
-    min-height: 450px; /* Adjusted height for better spacing */
+    width: 100%;
+    min-height: 500px; /* Increased from 450px to 500px */
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
+    padding: 15px; /* Slightly increased padding */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-wrap: wrap;
-    flex-direction:row ;
-    background-color: #e0f7f7; /* Light teal background */
-    text-align: left; /* Left align content */
-    overflow: hidden; /* Hide overflowing content */
+    flex-direction: column;
+    background-color: #e0f7f7;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.5s, box-shadow 0.5s;
 }
 
 .recipe img {
-    width: 100%; /* Make the image take the full width of the container */
-    height: 150px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensure the image covers the entire container */
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.favorite-btn {
     width: 100%;
-    padding: 10px;
-    margin-top: auto; /* Ensure button stays at the bottom */
-    border: none;
+    height: 200px; /* Increased from 150px to 200px for larger images */
+    object-fit: cover;
     border-radius: 5px;
-    cursor: pointer;
-    background-color: #107d7e; /* Teal button */
-    color: white;
-    font-size: 16px;
-    align-self: flex-end;
-    transition: background-color 0.5s ease-in-out; /* Increased duration */
+    margin-bottom: 15px;
 }
 
-.favorite-btn:hover {
-    background-color: #0a5b5c; /* Darker teal on hover */
-}
-
-.recipe ol, .recipe ul {
-    padding-left: 20px;
+.recipe h3,
+.recipe p,
+.recipe ul,
+.recipe ol {
     margin-bottom: 10px;
-}
-
-.recipe h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #107d7e; /* Teal heading */
-}
-
-.recipe p {
-    margin: 5px 0;
-    color: #333;
 }
 
 .recipe strong {
-    color:#107d7e ;
-}
-
-.recipe {
-    transition: transform 0.5s, box-shadow 0.5s;
+    color: #107d7e;
 }
 
 .recipe:hover {
@@ -290,8 +265,8 @@ footer {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.5s ease-in-out; 
-    margin-top: auto; 
+    transition: background-color 0.5s ease-in-out;
+    margin-top: auto; /* Ensure button stays at the bottom */
 }
 
 .save-favorite:hover {
@@ -307,11 +282,26 @@ footer {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.5s ease-in-out; 
-    margin-top: auto; 
+    transition: background-color 0.5s ease-in-out;
+    margin-top: auto; /* Ensure button stays at the bottom */
 }
 
 .delete-favorite:hover {
     background-color: #d32f2f;
 }
 
+@media (max-width: 1200px) {
+    #recipes,
+    #favorite-recipes,
+    #recipe-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #recipes,
+    #favorite-recipes,
+    #recipe-results {
+        grid-template-columns: 1fr;
+    }
+}
