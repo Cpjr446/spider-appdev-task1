@@ -224,6 +224,7 @@ let favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
 // Function to display ingredients
 function displayIngredients() {
     const ingredientsList = document.getElementById('ingredients-list');
+    ingredientsList.innerHTML = ''; // Clear existing content
     ingredients.forEach(ingredient => {
         const label = document.createElement('label');
         label.classList.add('ingredient');
@@ -232,70 +233,42 @@ function displayIngredients() {
     });
 }
 
-// Helper function to check preparation time
-function isTimeWithinRange(preparationTime, timeRange) {
-    const timeInMinutes = parseInt(preparationTime);
-    switch (timeRange) {
-        case "under 30 mins":
-            return timeInMinutes < 30;
-        case "30 mins to 1 hr":
-            return timeInMinutes >= 30 && timeInMinutes <= 60;
-        case "1 hr to 2 hrs":
-            return timeInMinutes > 60 && timeInMinutes <= 120;
-        case "More than 2 hrs":
-            return timeInMinutes > 120;
-        default:
-            return true;
-    }
-}
-// Function to check if the recipe meets the dietary restrictions
-function matchesDietaryRestrictions(recipe, dietary) {
-    if (dietary === "") return true;
-    const restrictions = dietary.split(", ").map(d => d.trim());
-    return restrictions.every(restriction => recipe.dietaryRestrictions.includes(restriction));
+function findRecipes(selectedIngredients, cuisine, dietary) {
+    return allRecipes.filter(recipe => {
+        const cuisineMatch = cuisine === "" || recipe.cuisine === cuisine;
+        const dietaryMatch = dietary === "" || recipe.dietaryRestrictions.includes(dietary);
+        const ingredientMatch = selectedIngredients.length === 0 || 
+            selectedIngredients.every(ingredient => recipe.ingredients.includes(ingredient));
+        return cuisineMatch && dietaryMatch && ingredientMatch;
+    });
 }
 
-// Function to find recipes
-function findRecipes(selectedIngredients, cuisine, time, dietary) {
-    return allRecipes.filter(recipe =>
-        (cuisine === "" || recipe.cuisine === cuisine) &&
-        (time === "" || isTimeWithinRange(recipe.preparationTime, time)) &&
-        (dietary === "" || matchesDietaryRestrictions(recipe, dietary)) &&
-        (selectedIngredients.length === 0 || selectedIngredients.some(ingredient => recipe.ingredients.includes(ingredient)))
-    );
-}
 
 // Function to display recipes
 function displayRecipes(recipes, containerId) {
     const recipesContainer = document.getElementById(containerId);
     recipesContainer.innerHTML = '';
     if (recipes.length === 0) {
-        recipesContainer.innerHTML = '<p>No recipes found</p>';
+        recipesContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No recipes found</p>';
     } else {
         recipes.forEach(recipe => {
             const recipeDiv = document.createElement('div');
             recipeDiv.classList.add('recipe');
 
-            // Split the procedure into steps and create an ordered list
             const procedureSteps = recipe.procedure.split('\n').map(step => step.trim()).filter(step => step.length > 0);
-            const procedureList = document.createElement('ol'); // Changed to ordered list
+            const procedureList = document.createElement('ol');
             procedureSteps.forEach(step => {
                 const listItem = document.createElement('li');
                 listItem.textContent = step;
                 procedureList.appendChild(listItem);
             });
 
-            // Create a list of ingredients
             const ingredientsList = document.createElement('ul');
             recipe.ingredients.forEach(ingredient => {
                 const listItem = document.createElement('li');
                 listItem.textContent = ingredient;
                 ingredientsList.appendChild(listItem);
-                
             });
-
-            // Check if the recipe is in the list of favorite recipes
-            const isFavorite = favoriteRecipes.some(favRecipe => favRecipe.name === recipe.name);
 
             recipeDiv.innerHTML = `
                 <h3>${recipe.name}</h3>
@@ -308,63 +281,24 @@ function displayRecipes(recipes, containerId) {
             recipeDiv.appendChild(ingredientsList);
             recipeDiv.innerHTML += `<p><strong>Procedure:</strong></p>`;
             recipeDiv.appendChild(procedureList);
-            if (isFavorite) {
-                recipeDiv.innerHTML += `<button class="delete-favorite" onclick="deleteFavorite('${recipe.name}')">Delete Favorite</button>`;
+            
+            if (containerId === 'favorite-recipes') {
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete Favorite';
+                deleteButton.classList.add('delete-favorite');
+                deleteButton.onclick = () => deleteFavorite(recipe.name);
+                recipeDiv.appendChild(deleteButton);
             } else {
-                recipeDiv.innerHTML += `<button class="save-favorite" onclick="saveFavorite('${recipe.name}')">Save as Favorite</button>`;
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save as Favorite';
+                saveButton.classList.add('save-favorite');
+                saveButton.onclick = () => saveFavorite(recipe.name);
+                recipeDiv.appendChild(saveButton);
             }
 
             recipesContainer.appendChild(recipeDiv);
         });
     }
-}
-
-// Add CSS styles for the Save as Favorite and Delete Favorite buttons
-const style = document.createElement('style');
-style.innerHTML = `
-    .save-favorite {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-family: 'Raleway', serif;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        margin-top: 10px;
-    }
-
-    .save-favorite:hover {
-        background-color: #45a049;
-    }
-
-    .delete-favorite {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-family: 'Raleway', serif;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        margin-top: 10px;
-    }
-
-    .delete-favorite:hover {
-        background-color: #d32f2f;
-    }
-`;
-document.head.appendChild(style);
-
-// Add the function to delete a recipe from favorites
-function deleteFavorite(recipeName) {
-    favoriteRecipes = favoriteRecipes.filter(recipe => recipe.name !== recipeName);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-    alert(`${recipeName} removed from favorites!`);
-    displayFavoriteRecipes();
-    displayRecipes(allRecipes, 'recipes'); // Refresh the displayed recipes to update buttons
 }
 
 // Function to save a recipe as favorite
@@ -375,12 +309,23 @@ function saveFavorite(recipeName) {
         localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
         alert(`${recipeName} added to favorites!`);
         displayFavoriteRecipes();
-        displayRecipes(allRecipes, 'recipes'); // Refresh the displayed recipes to update buttons
     } else {
         alert(`${recipeName} is already in favorites.`);
     }
 }
 
+// Function to delete a recipe from favorites
+function deleteFavorite(recipeName) {
+    favoriteRecipes = favoriteRecipes.filter(r => r.name !== recipeName);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    alert(`${recipeName} removed from favorites.`);
+    displayFavoriteRecipes();
+}
+
+// Function to display favorite recipes
+function displayFavoriteRecipes() {
+    displayRecipes(favoriteRecipes, 'favorite-recipes');
+}
 
 // Function to display favorite recipes
 function displayFavoriteRecipes() {
@@ -388,17 +333,18 @@ function displayFavoriteRecipes() {
 }
 
 // Event listener for form submission
-document.getElementById('ingredient-form').addEventListener('submit', function (event) {
+document.getElementById('recipe-finder-form').addEventListener('submit', function (event) {
     event.preventDefault();
     const selectedIngredients = Array.from(document.querySelectorAll('#ingredients-list input:checked')).map(input => input.value);
-    const cuisine = document.getElementById('cuisine-filter').value;
-    const time = document.getElementById('time-filter').value;
-    const dietary = document.getElementById('dietary-filter').value;
-    const foundRecipes = findRecipes(selectedIngredients, cuisine, time, dietary);
-    displayRecipes(foundRecipes, 'recipes');
+    const cuisine = document.getElementById('cuisine-input').value;
+    const dietary = Array.from(document.querySelectorAll('input[name="dietary-restrictions"]:checked')).map(input => input.value)[0] || "";
+    const foundRecipes = findRecipes(selectedIngredients, cuisine, dietary);
+    displayRecipes(foundRecipes, 'recipe-results');
 });
 
-// Initialize ingredients and favorite recipes
-displayIngredients();
-displayRecipes(allRecipes, 'recipes');  // Display all recipes initially
-displayFavoriteRecipes();
+// Initialize ingredients and recipes
+window.onload = function() {
+    displayIngredients();
+    displayRecipes(allRecipes, 'recipe-results');
+    displayFavoriteRecipes();
+};
