@@ -238,16 +238,15 @@ function findRecipes(selectedIngredients, cuisine, dietary) {
         const cuisineMatch = cuisine === "" || recipe.cuisine === cuisine;
         const dietaryMatch = dietary === "" || recipe.dietaryRestrictions.includes(dietary);
         const ingredientMatch = selectedIngredients.length === 0 || 
-            selectedIngredients.every(ingredient => recipe.ingredients.includes(ingredient));
+            recipe.ingredients.some(ingredient => selectedIngredients.includes(ingredient));
         return cuisineMatch && dietaryMatch && ingredientMatch;
     });
 }
-
-
 // Function to display recipes
-function displayRecipes(recipes, containerId) {
+function displayRecipes(recipes, containerId, selectedIngredients = []) {
     const recipesContainer = document.getElementById(containerId);
     recipesContainer.innerHTML = '';
+    
     if (recipes.length === 0) {
         recipesContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No recipes found</p>';
     } else {
@@ -267,6 +266,9 @@ function displayRecipes(recipes, containerId) {
             recipe.ingredients.forEach(ingredient => {
                 const listItem = document.createElement('li');
                 listItem.textContent = ingredient;
+                if (selectedIngredients.includes(ingredient)) {
+                    listItem.style.fontWeight = 'bold';
+                }
                 ingredientsList.appendChild(listItem);
             });
 
@@ -300,7 +302,6 @@ function displayRecipes(recipes, containerId) {
         });
     }
 }
-
 // Function to save a recipe as favorite
 function saveFavorite(recipeName) {
     const recipe = allRecipes.find(r => r.name === recipeName);
