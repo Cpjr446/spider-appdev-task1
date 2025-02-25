@@ -36,7 +36,7 @@ const recipes = [
         name: "Tomato Soup",
         cuisine: "American",
         ingredients: ["Tomato", "Onion", "Garlic"],
-        image: "tomato_soup.jpeg",
+        image: "Images/tomato_soup.jpeg",
         procedure:
        `Saute onions and garlic. 
         Add tomatoes and cook until soft.
@@ -48,7 +48,7 @@ const recipes = [
         name: "Chicken Salad",
         cuisine: "American",
         ingredients: ["Chicken", "Carrot", "Potato"],
-        image: "chicken_salad.jpeg",
+        image: "Images/chicken_salad.jpeg",
         procedure: 
         ` Boil chicken and vegetables. 
           Mix with dressing.
@@ -60,7 +60,7 @@ const recipes = [
         name: "Idli",
         cuisine: "South Indian",
         ingredients: ["Rice", "Urad Dal"],
-        image: "idli.jpeg",
+        image: "Images/idli.jpeg",
         procedure: 
        ` Soak rice and urad dal separately for 4-6 hours. 
          Grind to a fine paste and mix. 
@@ -73,7 +73,7 @@ const recipes = [
         name: "Dosa",
         cuisine: "South Indian",
         ingredients: ["Rice", "Urad Dal"],
-        image: "dosa.jpg",
+        image: "Images/dosa.jpg",
         procedure: 
         ` Soak rice and urad dal separately for 4-6 hours. 
           Grind to a fine paste and mix. 
@@ -86,7 +86,7 @@ const recipes = [
         name: "Sambar",
         cuisine: "South Indian",
         ingredients: ["Lentils", "Tomato", "Onion", "Carrot", "Potato", "Curry Leaves", "Mustard Seeds"],
-        image: "sambar.jpg",
+        image: "Images/sambar.jpg",
         procedure: 
        ` Cook lentils until soft. 
          In a pot, heat oil and add mustard seeds, curry leaves, and chopped vegetables. 
@@ -99,7 +99,7 @@ const recipes = [
         name: "Rasam",
         cuisine: "South Indian",
         ingredients: ["Tomato", "Garlic", "Tamarind", "Curry Leaves", "Mustard Seeds"],
-        image: "rasam.jpeg",
+        image: "Images/rasam.jpeg",
         procedure: 
         ` In a pot, heat oil and add mustard seeds, curry leaves, and crushed garlic.
           Add chopped tomatoes and tamarind juice.
@@ -111,7 +111,7 @@ const recipes = [
         name: "Pongal",
         cuisine: "South Indian",
         ingredients: ["Rice", "Lentils", "Ginger", "Green Chilies", "Curry Leaves", "Mustard Seeds"],
-        image: "pongal.jpeg",
+        image: "Images/pongal.jpeg",
         procedure:
        `Cook rice and lentils together until soft. 
         In a pan, heat ghee and add mustard seeds, curry leaves, chopped ginger, and green chilies. 
@@ -123,7 +123,7 @@ const recipes = [
         name: "Margherita Pizza",
         cuisine: "Italian",
         ingredients: ["Tomato", "Basil", "Mozzarella", "Olive Oil", "Bread"],
-        image: "margherita_pizza.jpeg",
+        image: "Images/margherita_pizza.jpeg",
         procedure: 
         ` Spread tomato sauce on pizza dough.
           Add mozzarella cheese and basil leaves. 
@@ -136,7 +136,7 @@ const recipes = [
         name: "Pasta Primavera",
         cuisine: "Italian",
         ingredients: ["Pasta", "Tomato", "Garlic", "Olive Oil", "Basil"],
-        image: "pasta_primavera.jpeg",
+        image: "Images/pasta_primavera.jpeg",
         procedure:
          ` Cook pasta according to package instructions.
            Saute garlic in olive oil.
@@ -153,7 +153,7 @@ const recipes = [
             "Cashew Nuts", "Butter", "Oil", "Garam Masala", "Cumin Seeds", 
             "Red Chilli Powder", "Turmeric", "Salt", "Onion"
         ],
-        image: "butter_chicken.jpg",
+        image: "Images/butter_chicken.jpg",
         procedure: `
              Mix chicken with yogurt, ginger-garlic paste, lemon juice, and spices. Marinate for 30 minutes.
              Cook marinated chicken in a tandoor or pan until tender.
@@ -173,7 +173,7 @@ const recipes = [
             "Ginger", "Garlic", "Green Chillies", "Cumin Seeds", "Garam Masala", 
             "Turmeric", "Salt", "Oil"
         ],
-        image: "saag_paneer.jpeg",
+        image: "Images/saag_paneer.jpeg",
         procedure: `
              Blanch spinach and blend into a smooth puree.
              Heat oil, add cumin seeds until they splutter. Add chopped onions and ginger-garlic paste, sauté until translucent.
@@ -189,7 +189,7 @@ const recipes = [
         name: "Tacos",
         cuisine: "Mexican",
         ingredients: ["Tortilla", "Chicken", "Tomato", "Lettuce", "Cheese", "Onion", "Garlic"],
-        image: "tacos.jpeg",
+        image: "Images/tacos.jpeg",
         procedure: `
             Marinate chicken with your favorite spices and let it sit for at least 15 minutes.
             Cook the marinated chicken in a pan with a little oil until done. Make sure it's thoroughly cooked.
@@ -206,7 +206,7 @@ const recipes = [
         name: "Guacamole",
         cuisine: "Mexican",
         ingredients: ["Avocado", "Tomato", "Onion", "Lime", "Garlic", "Cilantro"],
-        image: "guacamole.jpeg",
+        image: "Images/guacamole.jpeg",
         procedure: `
              Mash avocados in a bowl.
              Add chopped tomatoes, onions, garlic, and cilantro.
