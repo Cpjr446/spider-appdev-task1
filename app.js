@@ -73,7 +73,7 @@ const recipes = [
         name: "Dosa",
         cuisine: "South Indian",
         ingredients: ["Rice", "Urad Dal"],
-        image: "Images/dosa.jpg",
+        image: "Images/dosa.JPG",
         procedure: 
         ` Soak rice and urad dal separately for 4-6 hours. 
           Grind to a fine paste and mix. 
@@ -86,7 +86,7 @@ const recipes = [
         name: "Sambar",
         cuisine: "South Indian",
         ingredients: ["Lentils", "Tomato", "Onion", "Carrot", "Potato", "Curry Leaves", "Mustard Seeds"],
-        image: "Images/sambar.jpg",
+        image: "Images/sambar.JPG",
         procedure: 
        ` Cook lentils until soft. 
          In a pot, heat oil and add mustard seeds, curry leaves, and chopped vegetables. 
@@ -153,7 +153,7 @@ const recipes = [
             "Cashew Nuts", "Butter", "Oil", "Garam Masala", "Cumin Seeds", 
             "Red Chilli Powder", "Turmeric", "Salt", "Onion"
         ],
-        image: "Images/butter_chicken.jpg",
+        image: "Images/butter_chicken.JPG",
         procedure: `
              Mix chicken with yogurt, ginger-garlic paste, lemon juice, and spices. Marinate for 30 minutes.
              Cook marinated chicken in a tandoor or pan until tender.
