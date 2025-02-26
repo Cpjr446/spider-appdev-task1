@@ -86,7 +86,7 @@ const recipes = [
         name: "Sambar",
         cuisine: "South Indian",
         ingredients: ["Lentils", "Tomato", "Onion", "Carrot", "Potato", "Curry Leaves", "Mustard Seeds"],
-        image: "Images/sambhar.jpeg",
+        image: "Images/sambhar.jpg",
         procedure: 
        ` Cook lentils until soft. 
          In a pot, heat oil and add mustard seeds, curry leaves, and chopped vegetables. 
